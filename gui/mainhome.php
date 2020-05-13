@@ -92,12 +92,12 @@ SELECT c.ParentcategoryId, d.Name, count(b.id) nof_item
 	WHERE a.ItemNumber=b.Number
 	AND a.categoryId=c.categoryId
 	AND a.categoryId=d.Id
-	AND c.ParentcategoryId='".$oResult->rows[$i]['ParentcategoryId']."'
 	AND c.categoryId=d.Id
 	GROUP BY c.ParentcategoryId, d.Name
     ) e, catetory_relations f
     WHERE e.ParentcategoryId=f.categoryId
     AND f.ParentcategoryId NOT IN (select categoryId FROM catetory_relations)
+	AND f.ParentcategoryId='".$oResult->rows[$i]['ParentcategoryId']."'
     GROUP BY f.ParentcategoryId, e.Name";
 	$oResultthree=$oBasic->SqlQuery($sqlthree);
 	for($i2=0;$i2<$oResultthree->num_rows;$i2++)
